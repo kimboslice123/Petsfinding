@@ -1,0 +1,11 @@
+{
+  "_comment": "Individual rescue group websites that publish a JSON feed in the listing format described in README.md. Add entries like the disabled example below.",
+  "feeds": [
+    {
+      "id": "example-rescue",
+      "name": "Example Rescue (replace me)",
+      "url": "https://example.org/adoptable-pets.json",
+      "enabled": false
+    }
+  ]
+}

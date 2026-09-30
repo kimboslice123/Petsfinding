@@ -1,0 +1,145 @@
+{
+  "_comment": "FICTIONAL demo data. Organization names, pets, and contact details are invented for demonstration only.",
+  "organizations": [
+    {
+      "id": "hill-country-lab-rescue", "name": "Hill Country Lab Rescue (demo)", "type": "breed rescue",
+      "city": "Cedar Park", "state": "TX", "postalCode": "78613", "lat": 30.5052, "lng": -97.8203,
+      "website": "https://example.org/hill-country-lab-rescue", "facebookUrl": "https://www.facebook.com/",
+      "adoptionProcess": "All of our dogs live in foster homes. Submit an online application, then we do a vet reference check and a home visit. Adoption fee $250 includes microchip and vaccines. We only adopt within 60 miles of Austin.",
+      "policies": { "applicationRequired": true, "homeVisit": true, "vetReference": true, "fosterBased": true, "adoptionRadiusMiles": 60, "typicalWaitDays": 7 },
+      "pets": [
+        { "id": "hclr-1", "name": "Biscuit", "species": "dog", "breed": "Labrador Retriever", "age": "Young", "sex": "Male", "size": "Large", "energy": "High", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": null, "houseTrained": true, "traits": ["playful", "loves to fetch"], "description": "Biscuit is a goofy 2-year-old who loves to play fetch and swim. Needs a fenced yard." },
+        { "id": "hclr-2", "name": "Molly", "species": "dog", "breed": "Labrador Retriever / Golden Retriever", "age": "Adult", "sex": "Female", "size": "Large", "energy": "Moderate", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["affectionate", "gentle"], "description": "Sweet, cuddly lab-golden mix who is great with kids and cats." },
+        { "id": "hclr-3", "name": "Duke", "species": "dog", "breed": "Labrador Retriever", "age": "Senior", "sex": "Male", "size": "Large", "energy": "Low", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "specialNeeds": true, "traits": ["calm", "couch potato"], "description": "Duke is 10 and takes daily medication for arthritis. The calmest gentleman you'll meet." }
+      ]
+    },
+    {
+      "id": "austin-paws-alliance", "name": "Austin Paws Alliance (demo)", "type": "shelter",
+      "city": "Austin", "state": "TX", "postalCode": "78745", "lat": 30.2064, "lng": -97.796,
+      "website": "https://example.org/austin-paws", "facebookUrl": "https://www.facebook.com/",
+      "adoptionProcess": "Walk-ins welcome Tuesday–Sunday. Same-day adoptions are possible. Renters must show proof pets are allowed under their lease. Dogs over 40 lbs require a meet-and-greet with your current dog.",
+      "policies": { "landlordApproval": true, "meetAndGreetRequired": true },
+      "pets": [
+        { "id": "apa-1", "name": "Pepper", "species": "dog", "breed": "American Pit Bull Terrier / Mixed", "age": "Adult", "sex": "Female", "size": "Medium", "energy": "Moderate", "goodWithKids": true, "goodWithDogs": false, "goodWithCats": null, "houseTrained": true, "traits": ["affectionate", "velcro dog"], "description": "Pepper is a snuggly lap dog in a 50 lb body. She needs to be the only dog in the home.", "adoptionFee": "$75" },
+        { "id": "apa-2", "name": "Scout", "species": "dog", "breed": "Labrador Retriever / Mixed", "age": "Baby", "sex": "Male", "size": "Medium", "energy": "High", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": false, "traits": ["playful"], "description": "12-week-old lab mix puppy, crate training in progress.", "adoptionFee": "$150" },
+        { "id": "apa-3", "name": "Luna", "species": "cat", "breed": "Domestic Short Hair", "age": "Young", "sex": "Female", "size": "Small", "energy": "Moderate", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["affectionate", "playful"], "description": "Luna loves wand toys and will follow you around the house.", "adoptionFee": "$50" },
+        { "id": "apa-4", "name": "Tank", "species": "dog", "breed": "German Shepherd Dog", "age": "Adult", "sex": "Male", "size": "Large", "energy": "High", "goodWithKids": false, "goodWithDogs": true, "goodWithCats": false, "houseTrained": true, "traits": ["loyal", "smart"], "description": "Tank needs an experienced owner and an adult-only home.", "adoptionFee": "$75" },
+        { "id": "apa-5", "name": "Oreo", "species": "rabbit", "breed": "Dutch", "age": "Young", "sex": "Male", "size": "Small", "energy": "Moderate", "goodWithKids": true, "goodWithDogs": null, "goodWithCats": null, "houseTrained": true, "traits": ["curious"], "description": "Litter-trained bunny, indoor-only home required.", "adoptionFee": "$40" }
+      ]
+    },
+    {
+      "id": "golden-hearts-tx", "name": "Golden Hearts Rescue of Texas (demo)", "type": "breed rescue",
+      "city": "Round Rock", "state": "TX", "postalCode": "78664", "lat": 30.514, "lng": -97.668,
+      "website": "https://example.org/golden-hearts", "facebookUrl": "https://www.facebook.com/",
+      "adoptionProcess": "Application, phone interview, vet reference, and home visit required. Fenced yard required for all dogs. Adopters must be 25 or older. Adoption fee $350. Texas residents only.",
+      "policies": { "applicationRequired": true, "homeVisit": true, "vetReference": true, "fencedYardRequired": true, "minAdopterAge": 25, "inStateOnly": true, "typicalWaitDays": 14 },
+      "pets": [
+        { "id": "ghr-1", "name": "Sunny", "species": "dog", "breed": "Golden Retriever", "age": "Adult", "sex": "Female", "size": "Large", "energy": "Moderate", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["affectionate", "gentle"], "description": "A textbook golden: loving, gentle, and great with kids." },
+        { "id": "ghr-2", "name": "Cooper", "species": "dog", "breed": "Golden Retriever / Labrador Retriever", "age": "Young", "sex": "Male", "size": "Large", "energy": "High", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": null, "houseTrained": true, "traits": ["playful"], "description": "Energetic goldador who loves fetch and hiking." },
+        { "id": "ghr-3", "name": "Honey & Maple", "species": "dog", "breed": "Golden Retriever", "age": "Senior", "sex": "Female", "size": "Large", "energy": "Low", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["calm", "sweet"], "description": "Bonded pair of senior sisters; must be adopted together." }
+      ]
+    },
+    {
+      "id": "whisker-haven", "name": "Whisker Haven Cat Rescue (demo)", "type": "rescue",
+      "city": "Pflugerville", "state": "TX", "postalCode": "78660", "lat": 30.4394, "lng": -97.62,
+      "website": "https://example.org/whisker-haven", "facebookUrl": "https://www.facebook.com/",
+      "adoptionProcess": "Visits by appointment only at our adoption center. All cats must go to an indoor-only home. Declawing is prohibited by our adoption contract.",
+      "policies": { "appointmentOnly": true },
+      "pets": [
+        { "id": "wh-1", "name": "Mochi", "species": "cat", "breed": "Siamese / Mixed", "age": "Young", "sex": "Female", "energy": "High", "goodWithKids": true, "goodWithDogs": false, "goodWithCats": true, "houseTrained": true, "traits": ["playful", "vocal"], "description": "Chatty, playful and curious.", "adoptionFee": "$85" },
+        { "id": "wh-2", "name": "Earl Grey", "species": "cat", "breed": "Russian Blue", "age": "Adult", "sex": "Male", "energy": "Low", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["quiet", "affectionate", "lap cat"], "description": "Quiet lap cat who loves sunny windows.", "adoptionFee": "$85" },
+        { "id": "wh-3", "name": "Pumpkin", "species": "cat", "breed": "Domestic Short Hair", "age": "Baby", "sex": "Male", "energy": "High", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["playful"], "description": "Orange kitten, adopted together with a sibling preferred.", "adoptionFee": "$125" },
+        { "id": "wh-4", "name": "Duchess", "species": "cat", "breed": "Persian", "age": "Senior", "sex": "Female", "energy": "Low", "goodWithKids": false, "goodWithDogs": false, "goodWithCats": false, "houseTrained": true, "specialNeeds": true, "traits": ["independent", "quiet"], "description": "Diabetic, needs insulin twice daily. Must be the only pet; adults only.", "adoptionFee": "$25" }
+      ]
+    },
+    {
+      "id": "bastrop-county-animal-friends", "name": "Bastrop County Animal Friends (demo)", "type": "shelter",
+      "city": "Bastrop", "state": "TX", "postalCode": "78602", "lat": 30.1105, "lng": -97.3153,
+      "website": "https://example.org/bastrop-friends", "facebookUrl": "https://www.facebook.com/",
+      "adoptionProcess": "Open adoptions: no home visit. Adoption fee $60 for dogs, $30 for cats.",
+      "policies": {},
+      "pets": [
+        { "id": "bcaf-1", "name": "Ranger", "species": "dog", "breed": "Australian Cattle Dog / Mixed", "age": "Young", "sex": "Male", "size": "Medium", "energy": "High", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": false, "houseTrained": false, "traits": ["smart", "playful"], "description": "Heeler mix who needs a job. Not good with cats." },
+        { "id": "bcaf-2", "name": "Daisy", "species": "dog", "breed": "Beagle", "age": "Adult", "sex": "Female", "size": "Small", "energy": "Moderate", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["affectionate", "friendly"], "description": "Friendly beagle who loves everyone she meets." },
+        { "id": "bcaf-3", "name": "Bruno", "species": "dog", "breed": "Labrador Retriever / Mixed", "age": "Adult", "sex": "Male", "size": "Large", "energy": "Moderate", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": null, "houseTrained": true, "traits": ["gentle"], "description": "Laid-back lab mix, knows sit and down." }
+      ]
+    },
+    {
+      "id": "second-chance-seniors", "name": "Second Chance Seniors (demo)", "type": "foster network",
+      "city": "Georgetown", "state": "TX", "postalCode": "78626", "lat": 30.6388, "lng": -97.6777,
+      "website": "https://example.org/second-chance-seniors", "facebookUrl": "https://www.facebook.com/",
+      "adoptionProcess": "Foster-based senior pet rescue. We offer a two-week trial adoption. Application and vet reference required. Adoption fee $50; seniors adopting seniors are free.",
+      "policies": { "applicationRequired": true, "vetReference": true, "fosterBased": true },
+      "pets": [
+        { "id": "scs-1", "name": "Rosie", "species": "dog", "breed": "Cocker Spaniel", "age": "Senior", "sex": "Female", "size": "Small", "energy": "Low", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["calm", "affectionate", "lap dog"], "description": "Rosie, 11, wants a quiet couch and a lap." },
+        { "id": "scs-2", "name": "Gus", "species": "dog", "breed": "Labrador Retriever", "age": "Senior", "sex": "Male", "size": "Large", "energy": "Low", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["calm", "gentle"], "description": "Gentle old lab, a little hard of hearing." },
+        { "id": "scs-3", "name": "Whiskers", "species": "cat", "breed": "Maine Coon / Mixed", "age": "Senior", "sex": "Male", "energy": "Low", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["affectionate", "quiet"], "description": "Big fluffy gentle giant." }
+      ]
+    },
+    {
+      "id": "central-tx-shepherd-rescue", "name": "Central Texas Shepherd Rescue (demo)", "type": "breed rescue",
+      "city": "Belton", "state": "TX", "postalCode": "76513", "lat": 31.056, "lng": -97.4645,
+      "website": "https://example.org/ctx-shepherds", "facebookUrl": "https://www.facebook.com/",
+      "adoptionProcess": "Experienced owners preferred for high-drive shepherds. Home visit and fenced yard required. Must meet all household members and resident dogs.",
+      "policies": { "homeVisit": true, "fencedYardRequired": true, "meetAndGreetRequired": true },
+      "pets": [
+        { "id": "ctsr-1", "name": "Kaiser", "species": "dog", "breed": "German Shepherd Dog", "age": "Young", "sex": "Male", "size": "Large", "energy": "High", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": false, "houseTrained": true, "traits": ["smart", "playful"], "description": "High-drive young shepherd who excels at training." },
+        { "id": "ctsr-2", "name": "Freya", "species": "dog", "breed": "German Shepherd Dog / Labrador Retriever", "age": "Adult", "sex": "Female", "size": "Large", "energy": "Moderate", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["loyal", "affectionate"], "description": "Sweet shepherd-lab mix, great family dog.", "adoptionFee": "$200" }
+      ]
+    },
+    {
+      "id": "san-marcos-river-rescue", "name": "San Marcos River Rescue (demo)", "type": "rescue",
+      "city": "San Marcos", "state": "TX", "postalCode": "78666", "lat": 29.8833, "lng": -97.9414,
+      "website": "https://example.org/sm-river-rescue", "facebookUrl": "https://www.facebook.com/",
+      "adoptionProcess": "We mainly post new arrivals on our Facebook page. Application required; landlord approval for renters. Adoption fee $125.",
+      "policies": { "applicationRequired": true, "landlordApproval": true },
+      "pets": [
+        { "id": "smrr-1", "name": "Nala", "species": "dog", "breed": "Boxer / Labrador Retriever", "age": "Young", "sex": "Female", "size": "Medium", "energy": "High", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": null, "houseTrained": true, "traits": ["playful", "affectionate"], "description": "Wiggly boxer-lab mix who loves kids." },
+        { "id": "smrr-2", "name": "Chico", "species": "dog", "breed": "Chihuahua", "age": "Adult", "sex": "Male", "size": "Small", "energy": "Moderate", "goodWithKids": false, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["loyal"], "description": "Chico prefers adults only and a quiet home." },
+        { "id": "smrr-3", "name": "Cleo", "species": "cat", "breed": "Tabby / Domestic Short Hair", "age": "Adult", "sex": "Female", "energy": "Low", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["independent", "quiet"], "description": "Easygoing, independent tabby." }
+      ]
+    },
+    {
+      "id": "new-braunfels-humane", "name": "New Braunfels Humane Friends (demo)", "type": "shelter",
+      "city": "New Braunfels", "state": "TX", "postalCode": "78130", "lat": 29.6995, "lng": -98.1245,
+      "website": "https://example.org/nb-humane", "facebookUrl": "https://www.facebook.com/",
+      "adoptionProcess": "Adoption contract includes a return clause: if it doesn't work out, the pet comes back to us. Adopters must be 18 or older.",
+      "policies": { "minAdopterAge": 18 },
+      "pets": [
+        { "id": "nbh-1", "name": "Max", "species": "dog", "breed": "Labrador Retriever", "age": "Adult", "sex": "Male", "size": "Large", "energy": "Moderate", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["affectionate", "friendly"], "description": "Classic yellow lab, great with everyone.", "adoptionFee": "$95" },
+        { "id": "nbh-2", "name": "Ziggy", "species": "dog", "breed": "Dachshund / Mixed", "age": "Young", "sex": "Male", "size": "Small", "energy": "High", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": false, "traits": ["playful"], "description": "Spunky doxie mix.", "adoptionFee": "$95" }
+      ]
+    },
+    {
+      "id": "alamo-city-labs", "name": "Alamo City Labs (demo)", "type": "breed rescue",
+      "city": "San Antonio", "state": "TX", "postalCode": "78205", "lat": 29.4241, "lng": -98.4936,
+      "website": "https://example.org/alamo-labs", "facebookUrl": "https://www.facebook.com/",
+      "adoptionProcess": "Foster-based lab rescue. We only adopt to homes within 40 miles of San Antonio. Home visit required.",
+      "policies": { "fosterBased": true, "homeVisit": true, "adoptionRadiusMiles": 40 },
+      "pets": [
+        { "id": "acl-1", "name": "Bella", "species": "dog", "breed": "Labrador Retriever", "age": "Young", "sex": "Female", "size": "Large", "energy": "Moderate", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["affectionate", "playful"], "description": "Perfect family lab.", "adoptionFee": "$225" },
+        { "id": "acl-2", "name": "Jax", "species": "dog", "breed": "Labrador Retriever", "age": "Adult", "sex": "Male", "size": "Large", "energy": "High", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": null, "houseTrained": true, "traits": ["playful"], "description": "Fetch-obsessed chocolate lab.", "adoptionFee": "$225" }
+      ]
+    },
+    {
+      "id": "waco-wags", "name": "Waco Wags (demo)", "type": "rescue",
+      "city": "Waco", "state": "TX", "postalCode": "76701", "lat": 31.5493, "lng": -97.1467,
+      "website": "https://example.org/waco-wags", "facebookUrl": "https://www.facebook.com/",
+      "adoptionProcess": "Application required. Crate training expected for all puppies.",
+      "policies": { "applicationRequired": true },
+      "pets": [
+        { "id": "ww-1", "name": "Hazel", "species": "dog", "breed": "Golden Retriever / Poodle", "age": "Baby", "sex": "Female", "size": "Medium", "energy": "High", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": false, "traits": ["playful", "affectionate"], "description": "Goldendoodle puppy.", "adoptionFee": "$300" }
+      ]
+    },
+    {
+      "id": "bayou-city-rescue", "name": "Bayou City Rescue (demo)", "type": "rescue",
+      "city": "Houston", "state": "TX", "postalCode": "77002", "lat": 29.756, "lng": -95.365,
+      "website": "https://example.org/bayou-city", "facebookUrl": "https://www.facebook.com/",
+      "adoptionProcess": "Transport available statewide. Application and home visit required.",
+      "policies": { "applicationRequired": true, "homeVisit": true },
+      "pets": [
+        { "id": "bcr-1", "name": "Ellie", "species": "dog", "breed": "Labrador Retriever", "age": "Adult", "sex": "Female", "size": "Large", "energy": "Low", "goodWithKids": true, "goodWithDogs": true, "goodWithCats": true, "houseTrained": true, "traits": ["calm", "affectionate"], "description": "Mellow black lab." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Petsfinding — find your best-match rescue</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>🐾 Petsfinding</h1>
+    <p>Tell us about the pet you're hoping for. We'll rank the 10 rescue groups most likely to have them, and list each group's adoption requirements.</p>
+  </header>
+
+  <main>
+    <form id="prefs" class="card">
+      <div class="row">
+        <label>Pet type
+          <select name="species">
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="rabbit">Rabbit</option>
+            <option value="any">Any</option>
+          </select>
+        </label>
+        <label class="grow">Preferred breed(s)
+          <input name="breeds" placeholder="e.g. Labrador, Golden Retriever" />
+        </label>
+      </div>
+      <label class="check"><input type="checkbox" name="mixedOk" checked /> Mixed breeds are OK</label>
+
+      <fieldset>
+        <legend>Age</legend>
+        <label class="chip"><input type="checkbox" name="ages" value="baby" /> Baby</label>
+        <label class="chip"><input type="checkbox" name="ages" value="young" /> Young</label>
+        <label class="chip"><input type="checkbox" name="ages" value="adult" /> Adult</label>
+        <label class="chip"><input type="checkbox" name="ages" value="senior" /> Senior</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Temperament &amp; household</legend>
+        <div id="temperaments"></div>
+        <p class="hint">"Good with kids/dogs/cats" are treated as must-haves: a pet the group marked incompatible is left out of your results.</p>
+      </fieldset>
+
+      <div class="row">
+        <label>Your ZIP code
+          <input name="zip" inputmode="numeric" pattern="\d{5}" maxlength="5" required placeholder="78701" />
+        </label>
+        <label class="grow">How far will you travel? <strong><output id="distOut">50</output> miles</strong>
+          <input type="range" name="distance" min="5" max="300" step="5" value="50" />
+        </label>
+      </div>
+
+      <button type="submit">Find my top 10 matches</button>
+    </form>
+
+    <section id="status" aria-live="polite"></section>
+    <section id="results"></section>
+    <section id="external"></section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Always confirm availability and requirements directly with the rescue group. Listings change quickly.</p>
+  </footer>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
