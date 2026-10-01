@@ -6,6 +6,7 @@
 const FOSTER = 'Lives in a foster home — schedule a meeting ahead of time';
 
 const TEXT_RULES = [
+  [/application (and [\w ]{1,30})?(is )?required|submit an? (online |written )?application|fill out an? (online )?application/i, 'Written application required'],
   [/fenced[- ]in yard|fenced yard|secure(ly)? fenced/i, 'Fenced yard required'],
   [/home (visit|check|inspection)/i, 'Home visit required before adoption'],
   [/landlord|proof of (pet[- ]friendly )?(housing|rental)|lease/i, 'Renters need landlord approval / proof pets are allowed'],

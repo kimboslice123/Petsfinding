@@ -11,6 +11,58 @@ const link = (href, text) => (safeUrl(href) ? `<a href="${esc(href)}" target="_b
 
 form.distance.addEventListener('input', () => (distOut.textContent = form.distance.value));
 
+const pfResults = document.getElementById('petfinderResults');
+const PF_KEY = 'petsfinding.petfinderResults';
+
+// Keep pasted Petfinder results across page reloads, in this browser only.
+try {
+  const saved = localStorage.getItem(PF_KEY);
+  if (saved) {
+    pfResults.value = saved;
+    document.getElementById('petfinder').open = true;
+  }
+} catch {}
+pfResults.addEventListener('input', () => {
+  try { localStorage.setItem(PF_KEY, pfResults.value); } catch {}
+});
+document.getElementById('clearPetfinder').addEventListener('click', () => {
+  pfResults.value = '';
+  try { localStorage.removeItem(PF_KEY); } catch {}
+});
+
+function collectPrefs() {
+  const fd = new FormData(form);
+  return {
+    species: fd.get('species'),
+    breeds: fd.get('breeds'),
+    mixedOk: fd.get('mixedOk') ? 'true' : 'false',
+    ages: fd.getAll('ages').join(','),
+    temperaments: fd.getAll('temperaments').join(','),
+    zip: fd.get('zip'),
+    distance: fd.get('distance'),
+  };
+}
+
+document.getElementById('copyPrompt').addEventListener('click', async () => {
+  const status = document.getElementById('copyStatus');
+  const box = document.getElementById('promptText');
+  if (!/^\d{5}$/.test(form.zip.value)) {
+    status.textContent = 'Enter your ZIP code first.';
+    return;
+  }
+  const res = await fetch(`/api/petfinder-prompt?${new URLSearchParams(collectPrefs())}`);
+  const { prompt } = await res.json();
+  box.value = prompt;
+  box.hidden = false;
+  try {
+    await navigator.clipboard.writeText(prompt);
+    status.textContent = 'Copied!';
+  } catch {
+    box.select();
+    status.textContent = 'Select the text below and copy it (Ctrl/⌘ + C).';
+  }
+});
+
 async function loadOptions() {
   const res = await fetch('/api/options');
   const { temperaments, sources } = await res.json();
@@ -24,21 +76,15 @@ async function loadOptions() {
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const fd = new FormData(form);
-  const params = new URLSearchParams({
-    species: fd.get('species'),
-    breeds: fd.get('breeds'),
-    mixedOk: fd.get('mixedOk') ? 'true' : 'false',
-    ages: fd.getAll('ages').join(','),
-    temperaments: fd.getAll('temperaments').join(','),
-    zip: fd.get('zip'),
-    distance: fd.get('distance'),
-  });
   resultsEl.innerHTML = '';
   externalEl.innerHTML = '';
   statusEl.innerHTML = '<p class="loading">Searching rescue groups…</p>';
   try {
-    const res = await fetch(`/api/search?${params}`);
+    const res = await fetch('/api/search', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...collectPrefs(), petfinderResults: pfResults.value }),
+    });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Search failed');
     render(data);
@@ -53,7 +99,8 @@ function render(data) {
   statusEl.innerHTML = `
     <p>Searched ${data.totalPetsSearched} pets at ${data.totalOrgsSearched} groups within ${data.query.maxDistance} miles${where}
       (sources: ${data.sources.map((s) => esc(s.label)).join(', ')}).</p>
-    ${failed.map((s) => `<p class="error">${esc(s.label)} could not be searched: ${esc(s.error)}</p>`).join('')}`;
+    ${failed.map((s) => `<p class="error">${esc(s.label)} could not be searched: ${esc(s.error)}</p>`).join('')}
+    ${data.sources.flatMap((s) => s.warnings || []).map((w) => `<p class="hint">${esc(w)}</p>`).join('')}`;
 
   resultsEl.innerHTML = data.results.length
     ? data.results.map(renderOrg).join('')
@@ -62,7 +109,7 @@ function render(data) {
   externalEl.innerHTML = `
     <div class="card">
       <h2>Keep looking on sites we can't search automatically</h2>
-      <p class="hint">Petfinder no longer offers a public API, and Facebook doesn't allow automated searching of posts or groups. These links open those sites with your search already filled in.</p>
+      <p class="hint">Petfinder no longer offers a public API, and Facebook doesn't allow automated searching of posts or groups. These links open those sites with your search already filled in. To rank Petfinder pets here, use "Include Petfinder listings" in the form above.</p>
       <ul class="external">${data.externalSearches
         .map((l) => `<li>${link(l.url, l.site)} <span class="hint">${esc(l.description)}</span></li>`)
         .join('')}</ul>
@@ -101,7 +148,7 @@ function renderPet(p) {
   <div class="pet">
     ${img}
     <div>
-      <h4>${safeUrl(p.url) ? link(p.url, p.name) : esc(p.name)} <span class="pill">${p.matchScore}% match</span></h4>
+      <h4>${safeUrl(p.url) ? link(p.url, p.name) : esc(p.name)} <span class="pill">${p.matchScore}% match</span>${p.source === 'petfinder' ? ' <span class="pill pf">Petfinder</span>' : ''}</h4>
       <p class="meta">${esc([p.breeds.join(' / '), p.ageGroup, p.sex, p.size].filter(Boolean).join(' · '))}</p>
       ${p.matchReasons.length ? `<p class="reasons">✓ ${p.matchReasons.map(esc).join(' · ')}</p>` : ''}
       ${p.caveats.length ? `<p class="pet-caveats">Note: ${p.caveats.map(esc).join(' · ')}</p>` : ''}

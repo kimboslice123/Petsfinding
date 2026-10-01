@@ -46,3 +46,13 @@ button { margin-top: 12px; padding: 12px 20px; font: inherit; font-weight: 700; 
 .external li { margin: 6px 0; }
 a { color: var(--accent); }
 .site-footer { padding-bottom: 32px; font-size: 0.85rem; color: var(--muted); }
+
+.petfinder { margin: 16px 0 4px; border: 1px dashed var(--border); border-radius: 10px; padding: 10px 14px; }
+.petfinder summary { cursor: pointer; font-weight: 600; }
+.steps { padding-left: 20px; }
+.steps li { margin: 10px 0; }
+textarea { display: block; width: 100%; margin-top: 6px; padding: 8px 10px; font: 0.85rem/1.4 ui-monospace, Menlo, monospace; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--ink); }
+button.secondary { width: auto; margin: 4px 0; padding: 6px 12px; font-size: 0.9rem; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); }
+button.link { width: auto; margin: 4px 0; padding: 0; background: none; color: var(--muted); font-weight: 400; font-size: 0.85rem; text-decoration: underline; }
+.pill.pf { background: #e3f0fb; color: #1f5f99; }
+@media (prefers-color-scheme: dark) { .pill.pf { background: #1d3347; color: #8cc4f5; } }

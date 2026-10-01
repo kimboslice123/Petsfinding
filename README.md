@@ -26,11 +26,29 @@ To search real listings, copy `.env.example` to `.env` and add a RescueGroups.or
 |---|---|---|
 | **RescueGroups.org** | Official v5 API with radius search by ZIP. Covers thousands of US rescues and shelters. | ✅ Needs a free key: [request one](https://rescuegroups.org/services/adoptable-pet-data-api/) |
 | **Individual rescue group sites** | JSON feeds listed in `data/org-feeds.json` | ✅ Add as many as you like (format below) |
-| **Petfinder** | Petfinder **shut down its public API on Dec 2, 2025**, and its terms prohibit scraping. | 🔗 The app shows a pre-filled Petfinder search link |
+| **Petfinder** | No public API (**shut down Dec 2, 2025**). Instead, the [Claude in Chrome](https://claude.com/chrome) extension browses Petfinder in *your* browser, and you paste its results into Petsfinding. | ✅ Optional, see below. A pre-filled search link is also shown |
 | **Facebook** | Facebook has **no API for searching posts or groups**, and its terms prohibit scraping. | 🔗 Pre-filled Facebook post and group search links, plus each rescue's Facebook page |
 | **Adopt-a-Pet** | No public search API | 🔗 Pre-filled search link |
 
 Every source is an adapter in `src/sources/` that returns normalized `{ orgs, pets }` (see `src/model.js`). To add a source, write an adapter and register it in `LIVE_SOURCES` in `src/search.js`. If one source fails, the rest still search, and the UI reports which source failed.
+
+### Including Petfinder listings (Claude in Chrome)
+
+The app can't call Petfinder or your Chrome extension directly, so this is a hand-off you start yourself:
+
+1. Fill in your preferences, open **Include Petfinder listings**, and click **Copy instructions for Claude**. The app writes instructions tailored to your search (`GET /api/petfinder-prompt`).
+2. In Chrome, open petfinder.com, open the Claude side panel, paste, and send. Claude searches Petfinder with your filters and reads up to 25 pet pages, including each rescue's adoption policy. It returns a JSON list of pets.
+3. Paste Claude's reply into the box and search. The pasted results go to `POST /api/search` as `petfinderResults`.
+   `src/sources/petfinderImport.js` then:
+   - extracts the JSON, even when it's wrapped in a code fence or extra text
+   - groups pets by rescue and geocodes the rescue's ZIP
+   - caps the import at 200 pets and drops non-http links
+
+   Those pets are scored, ranked and caveat-checked exactly like pets from any other source, and they get a **Petfinder** badge.
+
+Pasted results are kept in your browser (localStorage) so a reload doesn't lose them. They aren't stored on the server.
+
+This is for your own personal search, done in your own signed-in browser at a human pace. Don't use it to bulk-copy Petfinder or to republish its listings, since Petfinder's terms prohibit that.
 
 ### Adding individual rescue group sites
 
@@ -74,12 +92,12 @@ Negations are handled, so "no home visit" does not produce "home visit required"
 ## Project layout
 
 ```
-src/server.js          HTTP server (static UI + /api/search, /api/options)
+src/server.js          HTTP server (static UI + /api/search [GET/POST], /api/petfinder-prompt, /api/options)
 src/search.js          runs sources in parallel, merges duplicate orgs, computes distances, ranks
 src/matcher.js         pet scoring and org ranking
 src/caveats.js         adoption-requirement extraction
 src/geo.js             ZIP geocoding (zippopotam.us + offline table) and haversine distance
-src/sources/           rescueGroups, orgFeeds, sample, externalLinks
+src/sources/           rescueGroups, orgFeeds, petfinderImport, sample, externalLinks
 public/                UI (vanilla HTML/CSS/JS, mobile-friendly, dark mode)
 data/                  demo listings and the org feed list
 test/                  node:test suites

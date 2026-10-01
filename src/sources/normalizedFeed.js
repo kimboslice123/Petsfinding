@@ -54,6 +54,7 @@ export function parseListingFeed(feed, sourceName) {
         url: p.url || o.adoptionUrl || o.website,
         photo: p.photo,
         location: p.lat != null ? { lat: Number(p.lat), lng: Number(p.lng) } : null,
+        distance: typeof p.distance === 'number' ? p.distance : null,
         source: sourceName,
       });
     }

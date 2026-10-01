@@ -74,12 +74,33 @@ function mergeResults(results) {
   return { orgs, pets };
 }
 
-export async function search(rawPrefs, { sources, fetchImpl } = {}) {
+const MAX_ORG_GEOCODES = 40;
+
+/** Orgs from pasted imports often have a ZIP but no coordinates. */
+async function geocodeOrgs(orgs, fetchImpl) {
+  const zips = [...new Set(
+    [...orgs.values()].filter((o) => !o.location && /^\d{5}/.test(o.postalCode || '')).map((o) => o.postalCode.slice(0, 5)),
+  )].slice(0, MAX_ORG_GEOCODES);
+  const coords = new Map();
+  await Promise.all(zips.map(async (zip) => {
+    try {
+      const g = await geocodeZip(zip, { fetchImpl });
+      if (g.lat != null) coords.set(zip, { lat: g.lat, lng: g.lng });
+    } catch {
+      // leave unlocated
+    }
+  }));
+  for (const o of orgs.values()) {
+    if (!o.location && o.postalCode) o.location = coords.get(o.postalCode.slice(0, 5)) || null;
+  }
+}
+
+export async function search(rawPrefs, { sources, extraSources = [], fetchImpl } = {}) {
   const prefs = parsePreferences(rawPrefs);
   const origin = await geocodeZip(prefs.zip, { fetchImpl });
   prefs.origin = origin;
 
-  const srcs = sources || (await activeSources());
+  const srcs = [...(sources || (await activeSources())), ...extraSources];
   const settled = await Promise.allSettled(srcs.map((s) => s.search(prefs, { fetchImpl })));
   const sourceStatus = [];
   const ok = [];
@@ -94,6 +115,7 @@ export async function search(rawPrefs, { sources, fetchImpl } = {}) {
   });
 
   const data = mergeResults(ok);
+  await geocodeOrgs(data.orgs, fetchImpl);
 
   // Fill in distances the source didn't compute.
   for (const org of data.orgs.values()) org.distance = haversineMiles(origin, org.location);

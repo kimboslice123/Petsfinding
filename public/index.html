@@ -52,6 +52,25 @@
         </label>
       </div>
 
+      <details id="petfinder" class="petfinder">
+        <summary>Include Petfinder listings <span class="hint">(optional, uses the Claude in Chrome extension)</span></summary>
+        <p class="hint">Petfinder has no public API, so Claude in Chrome browses Petfinder for you in your own browser. You then paste what it found here, and those pets get ranked along with everything else.</p>
+        <ol class="steps">
+          <li>
+            Fill in your preferences above, then
+            <button type="button" id="copyPrompt" class="secondary">Copy instructions for Claude</button>
+            <span id="copyStatus" class="hint" role="status"></span>
+            <textarea id="promptText" rows="6" readonly hidden aria-label="Instructions for Claude in Chrome"></textarea>
+          </li>
+          <li>Open a new tab at <a href="https://www.petfinder.com" target="_blank" rel="noopener">petfinder.com</a>, open the <strong>Claude</strong> side panel from your Chrome toolbar, paste the instructions, and send them. Let Claude finish browsing.</li>
+          <li>
+            Copy Claude's whole reply (the JSON list of pets) and paste it here:
+            <textarea name="petfinderResults" id="petfinderResults" rows="6" placeholder='[ { "name": "Biscuit", "species": "dog", ... } ]'></textarea>
+            <button type="button" id="clearPetfinder" class="link">Clear pasted results</button>
+          </li>
+        </ol>
+      </details>
+
       <button type="submit">Find my top 10 matches</button>
     </form>
 
